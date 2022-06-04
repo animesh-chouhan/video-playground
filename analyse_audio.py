@@ -44,3 +44,6 @@ def get_audio_mask(audio_file_path=AUDIO_FILE):
     data_filt = sg.filtfilt(b, a, data)
     write(os.path.join("generated", "low_pass.wav"), fr, data_filt)
     return data_filt
+
+
+# get_audio_mask()

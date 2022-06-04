@@ -6,30 +6,23 @@ from PIL import Image, ImageFilter
 from extract_audio import extract_audio
 from analyse_audio import get_audio_mask
 
-VIDEO_FILE = "videos/7665910.mp4"
+VIDEO_FILE = "videos/3aba02f_20.mp4"
 AUDIO_SAMPLE_RATE = 44100
 
 
 def video_filter(get_frame, t):
     frame = get_frame(t)
 
-    factor = 1 + abs(AUDIO_MASK[int(AUDIO_SAMPLE_RATE*t)])
+    audio_level = abs(AUDIO_MASK[int(AUDIO_SAMPLE_RATE*t)])
+    factor = np.interp(audio_level, [0, 1], [1, 1.3])
     img = Image.fromarray(frame, "RGB")
 
     mask = copy.deepcopy(img)
     mask = mask.convert("L")
-    mask = mask.point(lambda p: 255 if p > 180 else 0)
+    mask = mask.point(lambda p: 255 if p > 170 else 0)
     mask = mask.filter(ImageFilter.GaussianBlur(radius=3))
-    thresh = 135
-    mask = mask.point(lambda p: thresh + (255-thresh)
-                      * p/255 if p > thresh else 0)
-    mask = mask.filter(ImageFilter.GaussianBlur(radius=5))
-    thresh = 10
-    mask = mask.point(lambda p: thresh + (255-thresh)
-                      * p/255 if p > thresh else 0)
-    mask = mask.point(lambda p: 255 if p > 100 else p)
-    mask = mask.filter(ImageFilter.GaussianBlur(radius=30))
-    thresh = 10
+    mask = mask.point(lambda p: 255 if p > 50 else 0)
+    mask = mask.filter(ImageFilter.GaussianBlur(radius=20))
     mask = mask.filter(ImageFilter.BLUR)
 
     for x in range(img.width):
