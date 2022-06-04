@@ -6,7 +6,7 @@ from PIL import Image, ImageFilter
 from scripts.extract_audio import extract_audio
 from scripts.analyse_audio import get_audio_mask
 
-VIDEO_FILE = "videos/3aba02f_20.mp4"
+VIDEO_FILE = "videos/09be84c_12.mp4"
 AUDIO_SAMPLE_RATE = 44100
 
 
@@ -14,7 +14,7 @@ def video_filter(get_frame, t):
     frame = get_frame(t)
 
     audio_level = abs(AUDIO_MASK[int(AUDIO_SAMPLE_RATE*t)])
-    factor = np.interp(audio_level, [0, 1], [1, 1.3])
+    factor = np.interp(audio_level, [0, 1], [1, 1.4])
     img = Image.fromarray(frame, "RGB")
 
     mask = copy.deepcopy(img)

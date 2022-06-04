@@ -1,8 +1,9 @@
 __pycache__/*
 audios/*
 generated/*
-misc/*
+images/*
 saved/*
 videos/*
 tempCodeRunnerFile.py
 .ipynb_checkpoints
+*.pyc
