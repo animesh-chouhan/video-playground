@@ -1,0 +1,5 @@
+moviepy==1.0.3
+numpy==1.22.3
+scipy==1.8.1
+pydub==0.25.1
+Pillow==9.1.1

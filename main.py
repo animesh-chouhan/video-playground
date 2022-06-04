@@ -3,8 +3,8 @@ import copy
 import numpy as np
 from moviepy.editor import *
 from PIL import Image, ImageFilter
-from extract_audio import extract_audio
-from analyse_audio import get_audio_mask
+from scripts.extract_audio import extract_audio
+from scripts.analyse_audio import get_audio_mask
 
 VIDEO_FILE = "videos/3aba02f_20.mp4"
 AUDIO_SAMPLE_RATE = 44100
